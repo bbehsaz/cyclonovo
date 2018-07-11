@@ -1,0 +1,10 @@
+P1	P1	C2H4	44.0262	44.0262
+P3	P3	CHC	22.0131	22.0131
+P4	P4	DDD	88.0524	88.0524
+P2      P2      CCCC    58.0419 58.0419
+P5      P5      JJJ     29.02095        29.02095
+P6	P6	PPP	116.0838	116.0838
+NACL    NACL    NACL    57.95862        57.95862
+trimethylsiloxane       trimethylsiloxane       72.03953        72.03953
+tfa     tfa     113.99286       113.99286
+iodide  iodide  259.80992       259.80992
