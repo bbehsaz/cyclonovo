@@ -244,12 +244,8 @@ def findSpectraPassingThresh(
 	for x in finalClusters:
 		apeak = []
 		z=  [finalClusters[x][0],finalClusters[x][1],finalClusters[x][2],finalClusters[x][3]]
-		print z 
 		apeak = [a[0] for a in finalClusters[x][4]]
 		apeak += [a[1] for a in finalClusters[x][4]]
-		
-	# print finalClusters
-	print standardAutconvCleaned
 	import math
 	return numSTDFound, N , topNconvolutions ,standardAutconvCleaned, int(math.ceil(thresholdValue)), stand_aa_peak_pairs
 

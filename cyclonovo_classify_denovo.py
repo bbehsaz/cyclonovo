@@ -56,8 +56,9 @@ def get_parser():
 	parser.add_argument("-b", "--betta", dest='betta', help='Betta value for calculating multiplicity threshold', default=float(-1),type=float)
 	parser.add_argument("-a", "--alpha", dest='alpha', help='Alpha value for calculating multiplicity thresholds', default=float(150.0),type=float)
 	parser.add_argument("-v","--verbosity", dest="verbose", action="store_true")
+	parser.add_argument("--topcyclic", dest="topcyclic", action="store_true",help="Consider most common cyclopeptidic amino acids", default=False)
 	parser.add_argument("-f","--filter", dest="filter", action="store_true",help='Filter and Preprocess the spectra (otherwise it\'s assumed it\'s preprocessed\')')
-	parser.add_argument("--ripps", dest="ripps", action="store_true",help="Consider modifications common in RiPPs", default="False")
+	parser.add_argument("--ripps", dest="ripps", action="store_true",help="Consider modifications common in RiPPs", default=False)
 	parser.add_argument("--kmer_score", dest='kmerScoreIdent', help='k-mer score threshold for identifying cyclopeptidic spectra', default=int(4),type=int)
 	parser.add_argument("--cyclointensity", dest='cyclointensityThresh', help='cycloIntesity threshold for identifying cyclopeptidic spectra', default=int(60),type=int)
 	parser.add_argument("--num_frequent_clusters", dest='cyclointensityThresh', help='cycloIntesity threshold for identifying cyclopeptidic spectra', default=int(2),type=int)
@@ -81,9 +82,11 @@ if __name__ == "__main__":
 	# building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aminoacidMasses.txt")
 	if args.ripps:
 		building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_cyclomasses_ripps.txt")
-	else:	
+	if args.topcyclic:
 		building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_masses_25.txt")
-
+	else:	
+		building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_masses.txt")
+	print building_blocks_main
 	polymer_repeat_units = getBuildingBlocks(cyclonovoPath+"/configs/polymer_repeat_masses.txt")
 	output = args.output
 	if args.filter:
