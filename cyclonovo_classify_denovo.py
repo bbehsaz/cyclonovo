@@ -56,8 +56,8 @@ def get_parser():
 	parser.add_argument("-b", "--betta", dest='betta', help='Betta value for calculating multiplicity threshold', default=float(-1),type=float)
 	parser.add_argument("-a", "--alpha", dest='alpha', help='Alpha value for calculating multiplicity thresholds', default=float(150.0),type=float)
 	parser.add_argument("-v","--verbosity", dest="verbose", action="store_true")
-	parser.add_argument("-f","--filter", dest="filter", action="store_true")
-
+	parser.add_argument("-f","--filter", dest="filter", action="store_true",help='Filter and Preprocess the spectra (otherwise it\'s assumed it\'s preprocessed\')')
+	parser.add_argument("--ripps", dest="ripps", action="store_true",help="Consider modifications common in RiPPs", default="False")
 	parser.add_argument("--kmer_score", dest='kmerScoreIdent', help='k-mer score threshold for identifying cyclopeptidic spectra', default=int(4),type=int)
 	parser.add_argument("--cyclointensity", dest='cyclointensityThresh', help='cycloIntesity threshold for identifying cyclopeptidic spectra', default=int(60),type=int)
 	parser.add_argument("--num_frequent_clusters", dest='cyclointensityThresh', help='cycloIntesity threshold for identifying cyclopeptidic spectra', default=int(2),type=int)
@@ -79,8 +79,11 @@ if __name__ == "__main__":
 	protonMass = 1.00728 #This is simply mass of hydrogen --- do not remove!
 	digits = 2
 	# building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aminoacidMasses.txt")
-	building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_masses_t2.txt")
-	# building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_masses_test.txt")
+	if args.ripps:
+		building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_cyclomasses_ripps.txt")
+	else:	
+		building_blocks_main = getBuildingBlocks(cyclonovoPath+"/configs/aa_polymer_masses_25.txt")
+
 	polymer_repeat_units = getBuildingBlocks(cyclonovoPath+"/configs/polymer_repeat_masses.txt")
 	output = args.output
 	if args.filter:
@@ -211,8 +214,9 @@ if __name__ == "__main__":
 					nameofcyclospecfile = output+"_cyclonovo_cyclopep_spectra.mgf"
 	reconstructions_file[(kmerSize,kmerThreshold)].close()
 	verboseprint("calculating P-values and cleaning up ...")
-	Popen(["sh " +cyclonovoPath+'/scripts/generate_pvalus_recontfile_mgf.sh '+nameofrecontfile+ " " + nameofcyclospecfile + " " + str(output) + " "+ str(cyclonovoPath) +" " +str(e)]
-						,shell=True)
+	if args.denovo:
+		Popen(["sh " +cyclonovoPath+'/scripts/generate_pvalus_recontfile_mgf.sh '+nameofrecontfile+ " " + nameofcyclospecfile + " " + str(output) + " "+ str(cyclonovoPath) +" " +str(e)]
+					,shell=True)
 	
 	cyclopeptide_spectra_file.close()
 	#report the number of cyclopeptides identified in output_summary.txt
