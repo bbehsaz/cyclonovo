@@ -582,18 +582,8 @@ def find_aa_for_denovo(
 	foundMasses = set()
 	allSTNDclusters = []
 	polymerPeaks = set()
-	print "----"
-	for x in finalClusters:
-		print finalClusters[x]
-	for x in finalClusters:
-		apeak = []
-		print x 
-		apeak = [a[0] for a in finalClusters[x][4]]
-		apeak += [a[1] for a in finalClusters[x][4]]
-		print sorted(set(apeak))
 	for distance1 in sortedConvolutios:
 		distance = distance1[0]
-		print distance
 		min_distance = finalClusters[distance][2]
 		max_distance = finalClusters[distance][3]
 		peak_pairs = finalClusters[distance][4]
@@ -609,10 +599,7 @@ def find_aa_for_denovo(
 							polymerPeaks.add(pair[0])
 							polymerPeaks.add(pair[1])
 					continue
-				# if abs(mass-distance)<= finalClusters[distance][1] + e:
-				# if ((abs(mass - min_distance) < e) or (abs(mass - min_distance) < e) or (abs(mass - max_distance) < e) or (min_distance<mass and mass<max_distance) ):
 
-				# print abs(mass-distance)<=2*e and ((abs(mass - min_distance) < e) or (abs(mass - max_distance) < e) or (min_distance<mass and mass<max_distance) )
 				if abs(mass-distance)<=2*e and ((abs(mass - min_distance) < e) or (abs(mass - max_distance) < e) or (min_distance<mass and mass<max_distance) ):
 					relatedClusters[mass].append(ALLcleanedAutoconvolutions[distance]) 
 					standardAutconvCleaned[mass] += ALLcleanedAutoconvolutions[distance]
