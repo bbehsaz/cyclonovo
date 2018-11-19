@@ -21,12 +21,12 @@ Usage examples: \
 
 
 For the full list of available options please run\
-    ./cyclonovo.py -h
+     ./cyclonovo.py -h
 
 
 Output:\
-    cyclonovo_classification_report.txt          list spectra analyzed with scores related to identifying cyclospectra\
-    cyclonovo_cyclospectra.mgf                   mgf file contaning found cyclospectra\
+    cyclonovo_classification_report.txt        list spectra analyzed with scores related to identifying cyclospectra\
+    cyclonovo_cyclospectra.mgf                  mgf file contaning found cyclospectra\
     cyclonovo_sequencing_reconstructions.txt     reconstructions if de novo sequencing option is used
 
 
