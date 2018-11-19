@@ -27,8 +27,8 @@ def output_denovo_results(candidatePeptides, precursorMass, retention, charge, p
 	else:
 		maxScore = max(scores)
 
-	arguments_to_print = [(kmerSize,kmerThreshold), precursorMass, retention, charge, len(peptidesUptoCorrectScore), len(scores), maxScore]
-	benchmark_file.write("\t".join([str(x) for x in arguments_to_print])+"\n")
+	# arguments_to_print = [(kmerSize,kmerThreshold), precursorMass, retention, charge, len(peptidesUptoCorrectScore), len(scores), maxScore]
+	# benchmark_file.write("\t".join([str(x) for x in arguments_to_print])+"\n")
 
 	if maxScore>12:
 		return 1

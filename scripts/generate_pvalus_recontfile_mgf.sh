@@ -11,7 +11,6 @@ threshcore=11
 
 cat $allreconstfile | awk '($(NF)>11){print $(NF-3)}' | sort | uniq > "$output"_masses.txt
 
-echo "Calculating P-values and cleaning up ... "
 while read line; do grep "$line" "$allreconstfile" | awk '(NF>3 && $(NF-2)>11){n++; if (n<100){print $1}}' | sed 's/,/ /g' > "$output"_"$line"_reconst.txt  ; done < "$output"_masses.txt
 while read line; do grep "$line" "$allreconstfile" | awk '(NF>3 && $(NF-2)>11){n++; if (n<100){print $0}}' > "$output"_"$line"_allinfo.txt  ; done < "$output"_masses.txt
 
@@ -32,3 +31,5 @@ while read line; do if [ -f  "$output"_"$line"_reconst.txt ]; then rm  "$output"
 
 rm $allreconstfile
 while read line; do if [ -f  "$output"_"$line"_reconst_pvals.txt ]; then cat "$output"_"$line"_reconst_pvals.txt >> $allreconstfile ;rm  "$output"_"$line"_reconst_pvals.txt; fi; done < "$output"_masses.txt
+
+rm "$output"_masses.txt
