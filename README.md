@@ -6,9 +6,11 @@ Developed in University of California San Diego, La Jolla, CA, USA
 
 
 Dependencies (add binaries to PATH):
+
 	- NPDtools (https://github.com/ablab/npdtools)
 
 System requirements:
+
 	- Linux or macOS
 	- Python 2.7
 	- GNU sed 
