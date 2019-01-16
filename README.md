@@ -31,13 +31,10 @@ For the full list of available options please run
 
 
 Output:
-| File | Description |
-| --- | --- |
-| `cyclonovo_classification_report.txt` | lists the analyzed spectra with scores related to identifying cyclospectra |
-| `cyclonovo_cyclospectra.mgf` | mgf file contaning the identified cyclospectra |
-| `cyclonovo_sequencing_reconstructions.txt` | peptide reconstructions if de novo sequencing option is specified |
 
-
+* cyclonovo_classification_report.txt:              list spectra analyzed with scores related to identifying cyclospectra
+* cyclonovo_cyclospectra.mgf:                       mgf file contaning found cyclospectra
+* cyclonovo_sequencing_reconstructions.txt:         reconstructions if de novo sequencing option is used
 
 
 
