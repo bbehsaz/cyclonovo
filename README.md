@@ -37,4 +37,5 @@ Output:
 * cyclonovo_sequencing_reconstructions.txt:         reconstructions if de novo sequencing option is used
 
 
-
+For the latest version and the web application see (login to GNPS first):
+https://gnps.ucsd.edu/ProteoSAFe/index.jsp?params=%7B%22workflow%22:%22CYCLONOVO%22%7D
