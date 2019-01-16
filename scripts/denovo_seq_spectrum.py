@@ -20,5 +20,5 @@ def denovo_sequence_spectrum(standardAutconvCleaned,kValues,kthresholdValues,den
                 benchmark_file[(kmerSize,kmerThreshold)], kmerSize, kmerThreshold,reconstructions_file[(kmerSize,kmerThreshold)])
             # nameofrecontfile = output+"_sequencing_reconstructions.txt"
             # nameofcyclospecfile = output+"_cyclospectra.mgf"
-            reconstructions_file[(kmerSize,kmerThreshold)].close()
+            # reconstructions_file[(kmerSize,kmerThreshold)].close()
     return allsequenced

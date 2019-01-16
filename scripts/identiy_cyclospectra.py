@@ -36,8 +36,8 @@ def identify_cyclospectra(thisbuildingblock,peaksnIntensity_peptide,e,precursorM
             num_cyclopeptide_spectra_dic[(alpha,beta)] += 1
             cyclopeptide_spectra_file = open(output+"_cyclospectra.mgf","a")
             writeOriginalSpectra(lines2print,cyclopeptide_spectra_file)
-        if final_compound == 'polymer':
-            num_polymer_spectra_dic[(alpha,beta)] += 1
+        # if final_compound == 'polymer':
+        #     num_polymer_spectra_dic[(alpha,beta)] += 1
 
         if len(standardAutconvCleaned)>2:
             building_blocks = [key for key, value in standardAutconvCleaned.iteritems() if value>1]

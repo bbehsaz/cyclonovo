@@ -1,7 +1,20 @@
 import xml.etree.ElementTree
 from distutils import dir_util
 from os.path import join, isfile, isdir, basename
-
+def initialize_spectrum(verboseprint,pepmass,rt,charge,peaksnIntensity_peptide,total,protonMass,num_raw_spectra,num_spectra_analyzed):
+    verboseprint("=======================================================")
+    verboseprint("precursor mass, rt, charge: {}\t{}\t{}".format(pepmass,rt,charge))
+    total +=1
+    num_raw_spectra +=1
+    realPepMass = pepmass*charge - protonMass
+    if realPepMass < 550 or realPepMass > 2000:
+        verboseprint("Peptide mass out of the acceptable range")
+        return -1,total,num_raw_spectra,num_spectra_analyzed
+    if len(peaksnIntensity_peptide)<20:
+        verboseprint("There's not enough peaks in MS/MS spectrum")
+        return -1,total, num_raw_spectra, num_spectra_analyzed
+    num_spectra_analyzed +=1
+    return realPepMass, total, num_raw_spectra, num_spectra_analyzed
 
 def parse_params_xml(fpath):
     import xml.etree.ElementTree

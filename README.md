@@ -5,26 +5,27 @@ CycloNovo is a new algorithm that identifies spectra generated from cyclopeptide
 Developed in University of California San Diego, La Jolla, CA, USA
 
 
-Dependencies:
-
-- Dereplicator (http://cab.spbu.ru/software/dereplicator/)
-
+Dependencies (add binaries to PATH):
+	- NPDtools (https://github.com/ablab/npdtools)
 
 System requirements:
+	- Linux or macOS
+	- Python 2.7
+	- GNU sed 
 
-- macOS
-- Python 2.7
+To configure/test run:
 
+     make Makefile
 
 Usage examples: 
 
-     cyclonovo_classify_denovo.py -s data/surugamide_spectrum.mgf -o test_output \
+     cyclonovo -s data/surugamide_spectrum.mgf -o test_output \
      --denovo -k 5 --verbosity -e 0.015 --kmer_threshold 2 
 
 
 For the full list of available options please run
 
-     cyclonovo.py -h
+     cyclonovo -h
 
 
 Output:

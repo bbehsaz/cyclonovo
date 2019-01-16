@@ -80,24 +80,6 @@ def is_valid_file(parser, arg):
     else:
         return arg
 
-def initialize_spectrum(verboseprint,pepmass,rt,charge,peaksnIntensity_peptide):
-    global total,protonMass,num_raw_spectra,num_spectra_analyzed
-    verboseprint("=======================================================")
-    verboseprint("precursor mass, rt, charge: {}\t{}\t{}".format(pepmass,rt,charge))
-    total +=1
-    # addAminos = []
-    
-    # standardAutconvCleaned = []
-    num_raw_spectra +=1
-    realPepMass = pepmass*charge - protonMass
-    if realPepMass < 550 or realPepMass > 2000:
-        verboseprint("Peptide mass out of the acceptable range")
-        return -1
-    if len(peaksnIntensity_peptide)<20:
-        verboseprint("There's not enough peaks in MS/MS spectrum")
-        return -1
-    num_spectra_analyzed +=1
-    return realPepMass
 
 def mkdir_p(path):
     import xml.etree.ElementTree
@@ -175,8 +157,8 @@ if __name__ == "__main__":
                 reconstructions_file[(kmerSize,kmerThreshold)] = open(output+"_sequencing_reconstructions.txt","w")
     for peptide in peaksnIntensity:
         peaksnIntensity_peptide,precursorMass = peaksnIntensity[peptide],pepMasses[peptide]
-        #initilize analysis
-        realPepMass = initialize_spectrum(verboseprint,pepMasses[peptide],retentions[peptide],charges[peptide],peaksnIntensity_peptide)
+        #initilize the analysis
+        realPepMass,total,num_raw_spectra,num_spectra_analyzed = initialize_spectrum(verboseprint,pepMasses[peptide],retentions[peptide],charges[peptide],peaksnIntensity_peptide,total,protonMass,num_raw_spectra,num_spectra_analyzed)
         if realPepMass == -1:
             continue
         #Identify cyclospectra
@@ -194,7 +176,7 @@ if __name__ == "__main__":
 
     nameofrecontfile = output+"_sequencing_reconstructions.txt"
     nameofcyclospecfile = output+"_cyclospectra.mgf"
-    reconstructions_file[(kmerSize,kmerThreshold)].close()
+    # reconstructions_file[(kmerSize,kmerThreshold)].close()
     verboseprint("calculating P-values and cleaning up ...")
     if args.denovo:
         Popen(["sh " +cyclonovoPath+'/scripts/generate_pvalus_recontfile_mgf.sh '+nameofrecontfile+ " " + nameofcyclospecfile + " " + str(output) + " "+ str(cyclonovoPath) +" " +str(e)]
