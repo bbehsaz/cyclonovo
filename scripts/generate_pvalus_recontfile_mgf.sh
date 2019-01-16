@@ -17,7 +17,7 @@ while read line; do grep "$line" "$allreconstfile" | awk '(NF>3 && $(NF-2)>11){n
 cat $allspectfile  | python "$cyclonovoDir"/scripts/get_by_pepmass.py "$output"_masses.txt "$output"_
 
 
-while read line; do if [ -f "$output"_"$line".mgf ]; then "$cyclonovoDir"/scripts/print_score "$output"_"$line".mgf "$output"_"$line"_reconst.txt --mass_seq_in --no_filter --product_ion_thresh "$err" --no_merge --make_cyclic --multiple_seq_file --concise_output | grep -v "^#" > "$output"_"$line"_pvals.txt; fi; done < "$output"_masses.txt 
+while read line; do if [ -f "$output"_"$line".mgf ]; then print_score "$output"_"$line".mgf "$output"_"$line"_reconst.txt --mass_seq_in --no_filter --product_ion_thresh "$err" --no_merge --make_cyclic --multiple_seq_file --concise_output | grep -v "^#" > "$output"_"$line"_pvals.txt; fi; done < "$output"_masses.txt 
 
 while read line; do if [ -f "$output"_"$line".mgf ]; then paste "$output"_"$line"_allinfo.txt "$output"_"$line"_pvals.txt | awk '{print $(NF-1),$0}' | sort -nr | cut -f2- -d' ' |awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$7}'  > "$output"_"$line"_reconst_pvals.txt; fi; done < "$output"_masses.txt 
 

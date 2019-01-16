@@ -1,0 +1,22 @@
+def denovo_sequence_spectrum(kValues,kthresholdValues):         
+    for kmerSize in kValues: 
+        
+        for kmerThreshold in kthresholdValues: 
+            verboseprint("@@@")
+            verboseprint("De novo sequence ... \nkmer: size {}, threshold {}".format(kmerSize,kmerThreshold))
+            if len(building_blocks)<3:
+                verboseprint("Number of predicted cyclopeptidic amino acids is low")
+                break
+            verboseprint("Predicted Amino Acids:")
+            building_blocks = []
+            for p in sorted(standardAutconvCleaned.iteritems(), key=itemgetter(1), reverse=True):
+                if p[1]>args.aminoThresh:
+                    verboseprint("{}\t{}".format(round(p[0],2),p[1]))
+                    building_blocks.append(p[0])
+            candidateSequences = denovo_sequence(
+                peaksnIntensity[peptide].keys(), realPepMass, building_blocks,kmerSize,e,e,kmerThreshold,verboseprint)
+            allsequenced += output_denovo_results(candidateSequences, precursorMass, retentions[peptide], charges[peptide], peptide,
+                benchmark_file[(kmerSize,kmerThreshold)], kmerSize, kmerThreshold,reconstructions_file[(kmerSize,kmerThreshold)])
+            nameofrecontfile = output+"_sequencing_reconstructions.txt"
+            nameofcyclospecfile = output+"_cyclospectra.mgf"
+    reconstructions_file[(kmerSize,kmerThreshold)].close()
