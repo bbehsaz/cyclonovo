@@ -41,3 +41,6 @@ For the latest version and the web application see (GNPS account necessary):
 https://gnps.ucsd.edu/ProteoSAFe/index.jsp?params=%7B%22workflow%22:%22CYCLONOVO%22%7D
 
 For the latest development version see: https://github.com/bbehsaz/cyclonovo_dev
+
+CycloNovo is available under a modified Apache 2.0 License, and is free for non-profit use.
+
